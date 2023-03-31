@@ -16,8 +16,17 @@ final class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         loginButton.layer.cornerRadius = 5
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let welcomeVC = segue.destination as? WelcomeViewController else { return }
+        welcomeVC.welcomeText = "Welcome, \(loginTF.text!)"
+    }
+    
+    @IBAction func unwind(for segue: UIStoryboardSegue) {
+        loginTF.text = ""
+        passwordTF.text = ""
     }
     
     @IBAction func loginTapped() {
@@ -26,18 +35,17 @@ final class LoginViewController: UIViewController {
         } else {
             showAlert(
                 title: "Invalid login or password",
-                message: "Please, enter correct login and password"
-            ) { _ in
-                self.passwordTF.text = ""
-            }
+                message: "Please, enter correct login and password",
+                okActionHandler: { _ in self.passwordTF.text = "" }
+            )
         }
     }
     
-    @IBAction func forgotUserNameTapped(_ sender: UIButton) {
+    @IBAction func forgotUserNameTapped() {
         showAlert(title: "Oops!", message: "Your name is User 😉")
     }
     
-    @IBAction func forgotPasswordTapped(_ sender: UIButton) {
+    @IBAction func forgotPasswordTapped() {
         showAlert(title: "Oops!", message: "Your password is Pass 😉")
     }
     
