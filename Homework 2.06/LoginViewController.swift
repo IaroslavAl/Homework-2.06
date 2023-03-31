@@ -16,9 +16,17 @@ final class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loginTF.delegate = self
+        passwordTF.delegate = self
+        
         loginButton.layer.cornerRadius = 5
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        view.endEditing(true)
+    }
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let welcomeVC = segue.destination as? WelcomeViewController else { return }
         welcomeVC.welcomeText = "Welcome, \(loginTF.text!)"
@@ -55,5 +63,12 @@ final class LoginViewController: UIViewController {
         
         alertController.addAction(okAction)
         self.present(alertController, animated: true, completion: nil)
+    }
+}
+
+extension LoginViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }
