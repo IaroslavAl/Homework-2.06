@@ -12,14 +12,13 @@ final class LoginViewController: UIViewController {
     @IBOutlet weak var loginTF: UITextField!
     @IBOutlet weak var passwordTF: UITextField!
     
-    @IBOutlet weak var loginButton: UIButton!
+    private let user = "User"
+    private let password = "Pass"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         loginTF.delegate = self
         passwordTF.delegate = self
-        
-        loginButton.layer.cornerRadius = 5
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -29,7 +28,7 @@ final class LoginViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let welcomeVC = segue.destination as? WelcomeViewController else { return }
-        welcomeVC.welcomeText = "Welcome, \(loginTF.text!)"
+        welcomeVC.user = user
     }
     
     @IBAction func unwind(for segue: UIStoryboardSegue) {
@@ -38,31 +37,30 @@ final class LoginViewController: UIViewController {
     }
     
     @IBAction func loginTapped() {
-        if loginTF.text == "User" && passwordTF.text == "Pass" {
-            print("Correct")
+        if loginTF.text == user && passwordTF.text == password {
+            performSegue(withIdentifier: "showWelcomeVC", sender: nil)
         } else {
             showAlert(
                 title: "Invalid login or password",
                 message: "Please, enter correct login and password",
-                okActionHandler: { _ in self.passwordTF.text = "" }
+                textField: passwordTF
             )
         }
     }
     
-    @IBAction func forgotUserNameTapped() {
-        showAlert(title: "Oops!", message: "Your name is User 😉")
+    @IBAction func forgotRegisterData(_ sender: UIButton) {
+        sender.tag == 0
+        ? showAlert(title: "Oops!", message: "Your name is \(user) 😉")
+        : showAlert(title: "Oops!", message: "Your password is \(password) 😉")
     }
     
-    @IBAction func forgotPasswordTapped() {
-        showAlert(title: "Oops!", message: "Your password is Pass 😉")
-    }
-    
-    private func showAlert(title: String, message: String, okActionHandler: ((UIAlertAction) -> Void)? = nil) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default, handler: okActionHandler)
-        
-        alertController.addAction(okAction)
-        self.present(alertController, animated: true, completion: nil)
+    private func showAlert(title: String, message: String, textField: UITextField? = nil) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+            textField?.text = ""
+        }
+        alert.addAction(okAction)
+        present(alert, animated: true)
     }
 }
 
