@@ -12,33 +12,42 @@ final class LoginViewController: UIViewController {
     @IBOutlet weak var loginTF: UITextField!
     @IBOutlet weak var passwordTF: UITextField!
     
-    private let user = "User"
-    private let password = "Pass"
+    private let user = User.getUser()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loginTF.delegate = self
-        passwordTF.delegate = self
+        loginTF.text = user.login
+        passwordTF.text = user.password
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showTabBarVC" {
+            guard let tabBarVC = segue.destination as? UITabBarController else { return }
+            
+            guard let welcomeVC = tabBarVC.viewControllers?[0] as? WelcomeViewController else { return }
+            welcomeVC.user = user
+            
+            guard let navigationController = tabBarVC.viewControllers?[1] as? UINavigationController else { return }
+            
+            guard let personInfoVC = navigationController.viewControllers[0] as? PersonInfoViewController else { return }
+            personInfoVC.user = user
+            personInfoVC.title = "\(user.person.firstName) \(user.person.lastName)"
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         view.endEditing(true)
     }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let welcomeVC = segue.destination as? WelcomeViewController else { return }
-        welcomeVC.user = user
-    }
     
     @IBAction func unwind(for segue: UIStoryboardSegue) {
-        loginTF.text = ""
-        passwordTF.text = ""
+        loginTF.text = user.login
+        passwordTF.text = user.password
     }
     
     @IBAction func loginTapped() {
-        if loginTF.text == user && passwordTF.text == password {
-            performSegue(withIdentifier: "showWelcomeVC", sender: nil)
+        if loginTF.text == user.login && passwordTF.text == user.password {
+            performSegue(withIdentifier: "showTabBarVC", sender: nil)
         } else {
             showAlert(
                 title: "Invalid login or password",
@@ -50,8 +59,8 @@ final class LoginViewController: UIViewController {
     
     @IBAction func forgotRegisterData(_ sender: UIButton) {
         sender.tag == 0
-        ? showAlert(title: "Oops!", message: "Your name is \(user) 😉")
-        : showAlert(title: "Oops!", message: "Your password is \(password) 😉")
+        ? showAlert(title: "Oops!", message: "Your name is \(user.login) 😉")
+        : showAlert(title: "Oops!", message: "Your password is \(user.password) 😉")
     }
     
     private func showAlert(title: String, message: String, textField: UITextField? = nil) {
@@ -61,12 +70,5 @@ final class LoginViewController: UIViewController {
         }
         alert.addAction(okAction)
         present(alert, animated: true)
-    }
-}
-
-extension LoginViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
     }
 }

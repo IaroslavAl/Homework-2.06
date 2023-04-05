@@ -8,17 +8,17 @@
 import UIKit
 
 final class WelcomeViewController: UIViewController {
-
+    
     @IBOutlet weak var welcomeLabel: UILabel!
     
-    var user = ""
+    var user: User!
     
     private let gradient = CAGradientLayer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        welcomeLabel.text = "Welcome, \(user)!"
+        welcomeLabel.text = "Здравствуйте, \(user.person.teacherName)!\nМеня зовут \(user.person.firstName)!"
         
         gradient.frame = view.bounds
         gradient.colors = [UIColor.systemPink.cgColor, UIColor.systemPurple.cgColor]
