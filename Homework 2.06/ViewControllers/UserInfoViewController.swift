@@ -7,14 +7,19 @@
 
 import UIKit
 
-final class PersonInfoViewController: UIViewController {
+final class UserInfoViewController: UIViewController {
+    
+    @IBOutlet weak var imageAvatar: UIImageView! {
+        didSet {
+            imageAvatar.layer.cornerRadius = imageAvatar.frame.width / 2
+        }
+    }
     
     @IBOutlet weak var labelFirstName: UILabel!
     @IBOutlet weak var labelLastName: UILabel!
     @IBOutlet weak var labelAge: UILabel!
     @IBOutlet weak var labelGender: UILabel!
     
-    @IBOutlet weak var imageAvatar: UIImageView!
     
     var user: User!
     
@@ -28,11 +33,9 @@ final class PersonInfoViewController: UIViewController {
         
         imageAvatar.image = UIImage(named: user.person.avatar)
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showBiographyVC" {
             guard let biographyVC = segue.destination as? BiographyViewController else { return }
             biographyVC.user = user
-        }
     }
 }

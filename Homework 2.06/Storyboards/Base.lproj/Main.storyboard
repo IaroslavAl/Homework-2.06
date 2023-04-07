@@ -106,8 +106,8 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uGr-0e-ZLk">
-                                <rect key="frame" x="126.5" y="383" width="67" height="36"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <rect key="frame" x="124.5" y="433" width="71" height="36"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Log out">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -122,7 +122,7 @@
                         <constraints>
                             <constraint firstItem="taN-av-zbe" firstAttribute="centerX" secondItem="def-aq-FTc" secondAttribute="centerX" id="LrS-j9-mbI"/>
                             <constraint firstItem="uGr-0e-ZLk" firstAttribute="centerX" secondItem="def-aq-FTc" secondAttribute="centerX" id="Qdw-dw-2XJ"/>
-                            <constraint firstItem="WhV-Fn-oEd" firstAttribute="bottom" secondItem="uGr-0e-ZLk" secondAttribute="bottom" constant="100" id="TjZ-Ba-cAF"/>
+                            <constraint firstItem="WhV-Fn-oEd" firstAttribute="bottom" secondItem="uGr-0e-ZLk" secondAttribute="bottom" constant="50" id="TjZ-Ba-cAF"/>
                             <constraint firstItem="fHe-a0-Nkg" firstAttribute="centerX" secondItem="def-aq-FTc" secondAttribute="centerX" id="V03-SZ-wXA"/>
                             <constraint firstItem="fHe-a0-Nkg" firstAttribute="top" secondItem="WhV-Fn-oEd" secondAttribute="top" constant="100" id="lD5-yi-AHL"/>
                             <constraint firstItem="taN-av-zbe" firstAttribute="top" secondItem="fHe-a0-Nkg" secondAttribute="bottom" constant="20" id="wJK-PH-Fk1"/>
@@ -138,22 +138,22 @@
             </objects>
             <point key="canvasLocation" x="2453" y="-378"/>
         </scene>
-        <!--Person Info View Controller-->
+        <!--User Info View Controller-->
         <scene sceneID="Ouo-8r-Ssl">
             <objects>
-                <viewController id="tcQ-na-d27" customClass="PersonInfoViewController" customModule="Homework_2_06" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="tcQ-na-d27" customClass="UserInfoViewController" customModule="Homework_2_06" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VKO-XD-vA2">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BAp-l6-CHm">
-                                <rect key="frame" x="50" y="44" width="220" height="220"/>
+                                <rect key="frame" x="30" y="44" width="260" height="260"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="BAp-l6-CHm" secondAttribute="height" multiplier="1:1" id="7qE-Xw-WgU"/>
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Bf8-sb-MzN">
-                                <rect key="frame" x="16" y="304" width="288" height="224"/>
+                                <rect key="frame" x="16" y="344" width="288" height="224"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="xEl-s9-vJa">
                                         <rect key="frame" x="0.0" y="0.0" width="102" height="50"/>
@@ -229,12 +229,12 @@
                         <viewLayoutGuide key="safeArea" id="RdX-5N-dfL"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="BAp-l6-CHm" firstAttribute="leading" secondItem="RdX-5N-dfL" secondAttribute="leading" constant="50" id="1Xv-RN-uqQ"/>
+                            <constraint firstItem="BAp-l6-CHm" firstAttribute="leading" secondItem="RdX-5N-dfL" secondAttribute="leading" constant="30" id="1Xv-RN-uqQ"/>
                             <constraint firstItem="BAp-l6-CHm" firstAttribute="top" secondItem="RdX-5N-dfL" secondAttribute="top" id="6kF-v0-DYt"/>
                             <constraint firstItem="Bf8-sb-MzN" firstAttribute="top" secondItem="BAp-l6-CHm" secondAttribute="bottom" constant="40" id="HDB-r6-dFD"/>
                             <constraint firstItem="BAp-l6-CHm" firstAttribute="centerX" secondItem="VKO-XD-vA2" secondAttribute="centerX" id="Ig1-dw-QgJ"/>
                             <constraint firstItem="RdX-5N-dfL" firstAttribute="trailing" secondItem="Bf8-sb-MzN" secondAttribute="trailing" constant="16" id="K2C-BH-OND"/>
-                            <constraint firstItem="RdX-5N-dfL" firstAttribute="trailing" secondItem="BAp-l6-CHm" secondAttribute="trailing" constant="50" id="Phh-Yf-wFN"/>
+                            <constraint firstItem="RdX-5N-dfL" firstAttribute="trailing" secondItem="BAp-l6-CHm" secondAttribute="trailing" constant="30" id="Phh-Yf-wFN"/>
                             <constraint firstItem="Bf8-sb-MzN" firstAttribute="leading" secondItem="RdX-5N-dfL" secondAttribute="leading" constant="16" id="iLq-JD-QtE"/>
                         </constraints>
                     </view>

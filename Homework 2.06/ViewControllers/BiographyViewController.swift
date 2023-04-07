@@ -15,7 +15,7 @@ final class BiographyViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "\(user.person.firstName) \(user.person.lastName) Bio"
+        title = "\(user.person.fullName) Bio"
         
         labelBiography.text = user.person.biography
     }

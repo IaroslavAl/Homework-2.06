@@ -21,7 +21,7 @@ final class WelcomeViewController: UIViewController {
         welcomeLabel.text = "Здравствуйте, \(user.person.teacherName)!\nМеня зовут \(user.person.firstName)!"
         
         gradient.frame = view.bounds
-        gradient.colors = [UIColor.systemPink.cgColor, UIColor.systemPurple.cgColor]
+        gradient.colors = [UIColor.black.cgColor, UIColor.white.cgColor]
         view.layer.insertSublayer(gradient, at: 0)
     }
 }
